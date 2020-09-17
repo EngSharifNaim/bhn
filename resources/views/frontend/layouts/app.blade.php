@@ -46,9 +46,10 @@
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
     <script src="{{asset('assets/js/respond.min.js')}}"></script>
+    <script src="{{asset('assets/js/swiper.min.js')}}"></script>
     <![endif]-->
     <style>
-        *{
+        *, .btn{
             font-family: "STC Light";
         }
         p{
@@ -57,7 +58,9 @@
         html {
             scroll-behavior: smooth;
         }
-
+        .colorlib-logo{
+            margin-bottom: 0px;
+        }
 
     </style>
 </head>
@@ -67,31 +70,39 @@
 
     @yield('content')
     <aside id="colorlib-aside" role="complementary" class="border js-fullheight navbar-fixed-top">
-        <h1 id="colorlib-logo"><a href="index.html">بلدية بيت حانون</a></h1>
-        <nav id="colorlib-main-menu" role="navigation">
-            <ul>
-                <li class="colorlib-active"><a href="index.html">الرئيسية</a></li>
-                <li><a href="work.html">رئيس البلدية</a></li>
-                <li><a href="#majlesh">المجلس البلدي</a></li>
-                <li><a href="services.html">خدمات البلدية</a></li>
-                <li><a href="#departments">أقسام البلدية</a></li>
-                <li><a href="blog.html">مشاريع البلدية</a></li>
-                <li><a href="blog.html">أخبار البلدية</a></li>
-                <li><a href="blog.html">الخدمات الإلكترونية</a></li>
-                <li><a href="contact.html">اتصل بنا</a></li>
-            </ul>
-        </nav>
+        <h1 id="colorlib-logo"><a href="index.html">
+                <img src="{{url('assets/images/logo.png')}}" style="width: 150px">
+            </a></h1>
 
-        <div class="colorlib-footer">
-            <p><small>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                <script>document.write(new Date().getFullYear());</script> تطوير قسم الحاسوب - بلدية بيت حانون </i> 
-                </p>
+        <h1 id="colorlib-logo"><a href="index.html">بلدية بيت حانون</a></h1>
+        <div class="colorlib-social">
             <ul>
                 <li><a href="#"><i class="icon-facebook2"></i></a></li>
                 <li><a href="#"><i class="icon-twitter2"></i></a></li>
                 <li><a href="#"><i class="icon-instagram"></i></a></li>
                 <li><a href="#"><i class="icon-linkedin2"></i></a></li>
             </ul>
+        </div>
+
+
+
+        <nav id="colorlib-main-menu" role="navigation">
+            <ul>
+                <li class="menu_link colorlib-active"><a href="{{url('/')}}">الرئيسية</a></li>
+                <li><a class="menu_link" href="#news">أخبار البلدية</a></li>
+                <li><a class="menu_link" href="#mayor">رئيس البلدية</a></li>
+                <li><a class="menu_link" href="#majles">المجلس البلدي</a></li>
+                <li><a class="menu_link" href="#departments">أقسام البلدية</a></li>
+                <li><a class="menu_link" href="#projects">مشاريع البلدية</a></li>
+                <li><a class="menu_link" href="blog.html">الخدمات الإلكترونية</a></li>
+                <li><a class="menu_link" href="#contact">اتصل بنا</a></li>
+            </ul>
+        </nav>
+
+        <div class="colorlib-footer">
+            <p><small>
+                <script>document.write(new Date().getFullYear());</script> جميع الحقوق محفوظة لدى بلدية بيت حانون </i>
+                </p>
         </div>
 
     </aside>
@@ -118,7 +129,13 @@
 
 <!-- MAIN JS -->
 <script src="{{asset('assets/js/main.js')}}"></script>
-
+<script>
+    $(document).ready(function() {
+        $('.menu_link').on('click', function () {
+            $(this).addClass('colorlib-active')
+        })
+    }
+</script>
 </body>
 </html>
 

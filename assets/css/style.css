@@ -7,7 +7,7 @@
 
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *	Edit this section
 *
 * ======================================================= */
@@ -105,7 +105,7 @@ figure {
     font-weight: 700;
     font-size: 22px;
     text-transform: uppercase;
-    margin-bottom: 3em;
+    margin-bottom: 0em;
     display: block;
     width: 100%; }
     @media screen and (max-width: 768px) {
@@ -191,7 +191,38 @@ figure {
     color: rgba(255, 255, 255, 0.3);
     padding: 0 20px;
     width: 100%; }
+  #colorlib-aside .colorlib-social {
+    /*position: absolute;*/
+    bottom: 40px;
+    right: 0;
+    left: 0;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.3);
+    padding: 0 20px;
+    width: 100%; }
     @media screen and (max-width: 768px) {
+      #colorlib-aside .colorlib-social {
+        position: relative;
+        bottom: 0; } }
+    #colorlib-aside .colorlib-social span {
+      display: block; }
+    #colorlib-aside .colorlib-social ul {
+      padding: 0;
+      margin: 0; }
+      #colorlib-aside .colorlib-social ul li {
+        padding: 0;
+        margin: 0;
+        display: inline;
+        list-style: none; }
+        #colorlib-aside .colorlib-social ul li a {
+          color: rgba(255, 255, 255, 0.3);
+          padding: 4px; }
+          #colorlib-aside .colorlib-social ul li a:hover, #colorlib-aside .colorlib-social ul li a:active, #colorlib-aside .colorlib-social ul li a:focus {
+            text-decoration: none;
+            outline: none;
+            color: #FFC300; }
       #colorlib-aside .colorlib-footer {
         position: relative;
         bottom: 0; } }
@@ -227,11 +258,11 @@ figure {
       width: 100%; } }
 
 #colorlib-hero {
-  min-height: 500px;
+  min-height: 100%;
   background: #fff url(../images/loader.gif) no-repeat center center;
   width: 100%;
   float: left;
-  margin-bottom: 10em;
+  margin-bottom: 0em;
   clear: both; }
   #colorlib-hero .flexslider {
     border: none;
@@ -405,8 +436,8 @@ body.offcanvas {
   position: relative; }
 
 .colorlib-heading {
-  font-size: 18px;
-  margin-bottom: 4em;
+  font-size: 24px;
+  margin-bottom: 1em;
   font-weight: 500;
   text-transform: uppercase;
   /* letter-spacing: 5px; */
