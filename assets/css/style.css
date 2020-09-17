@@ -300,7 +300,7 @@ figure {
           margin: 0;
           padding: 0;
           color: black;
-          font-family: "Quicksand", Arial, sans-serif; }
+          font-family: "STC Light" }
         #colorlib-hero .flexslider .slider-text > .slider-text-inner h1 {
           margin-bottom: 20px;
           font-size: 44px;
@@ -314,7 +314,7 @@ figure {
           line-height: 1.5;
           margin-bottom: 30px;
           font-weight: 300;
-          font-family: "Quicksand", Arial, sans-serif; }
+          }
           #colorlib-hero .flexslider .slider-text > .slider-text-inner h2 a {
             color: rgba(0, 0, 0, 0.8); }
         #colorlib-hero .flexslider .slider-text > .slider-text-inner .heading-section {
@@ -382,8 +382,8 @@ body.offcanvas {
 .colorlib-about,
 .colorlib-services,
 .colorlib-contact {
-  padding-top: 4em;
-  padding-bottom: 9em;
+  padding-top: 0em;
+  padding-bottom: 2em;
   clear: both;
   width: 100%;
   display: block; }
@@ -608,7 +608,7 @@ body.offcanvas {
           font-size: 40px; } }
   .colorlib-feature .colorlib-text {
     padding-right: 120px;
-    alignment: right;
+    /* alignment: right; */
     width: 100%; }
     .colorlib-feature .colorlib-text h2, .colorlib-feature .colorlib-text h3 {
       margin: 0;
