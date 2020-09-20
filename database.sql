@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 سبتمبر 2020 الساعة 12:57
+-- Generation Time: 20 سبتمبر 2020 الساعة 13:07
 -- إصدار الخادم: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -129,7 +129,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2020_09_17_092552_create_blogs_table', 1),
 (5, '2020_09_17_092617_create_comments_table', 1),
-(6, '2020_09_17_092647_create_categories_table', 1);
+(6, '2020_09_17_092647_create_categories_table', 1),
+(7, '2020_09_20_104621_create_photos_table', 2);
 
 -- --------------------------------------------------------
 
@@ -142,6 +143,46 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `photos`
+--
+
+CREATE TABLE `photos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `key` varchar(25) NOT NULL,
+  `value` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `settings`
+--
+
+INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
+(1, 'vision', 'نسعى الى تحقيق افضل خدمات للجمهور', '2020-09-20 10:08:05', '0000-00-00 00:00:00'),
+(2, 'mission', 'تقديم الخدمات على اكمل وجه', '2020-09-20 10:26:09', '0000-00-00 00:00:00'),
+(3, 'message', 'نحن معكم دوما', '2020-09-20 10:09:22', '0000-00-00 00:00:00'),
+(4, 'employees', '115', '2020-09-20 10:37:05', '0000-00-00 00:00:00'),
+(5, 'citizens', '60000', '2020-09-20 10:40:28', '0000-00-00 00:00:00'),
+(6, 'projects', '45', '2020-09-20 10:39:51', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -202,6 +243,18 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -240,7 +293,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
