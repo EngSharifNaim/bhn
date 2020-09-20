@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use App\Models\Blog;
-use http\Message\Body;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,22 +41,21 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($slug,Blog $blog)
+    public function show(Comment $comment)
     {
-        $related_blogs = Blog::where('category_id',$blog->category_id)->orderBy('id','DESC')->take(6)->get();
-        return view('frontend.news',compact('blog','related_blogs'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -66,10 +64,10 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -77,10 +75,10 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Comment $comment)
     {
         //
     }

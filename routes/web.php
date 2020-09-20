@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
-Route::get('/news/{slug}/{blog}', 'App\Http\Controllers\BlogController@show');
-Route::get('/category_news/{name}/{id}', 'App\Http\Controllers\CategoryController@show_news');
+Route::get('/', 'App\Http\Controllers\Front\HomeController@index');
+Route::get('/news/{slug}/{blog}', 'App\Http\Controllers\Front\BlogController@show');
+Route::get('/category_news/{name}/{id}', 'App\Http\Controllers\Front\CategoryController@show_news');

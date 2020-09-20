@@ -14,7 +14,7 @@
                                 <div class="desc">
                                     <h1>{{$blog->title}} </h1>
                                     <h2>{!! substr($blog->details,0,100) !!} ... <a href="#" target="_blank"></a></h2>
-                                     <p><a class="btn btn-primary btn-learn" href="{{url('news/' . $blog->id)}}">تفاصيل<i class="icon-arrow-right3"></i></a></p>
+                                     <p><a class="btn btn-primary btn-learn" href="{{url('news/' . str_replace(' ','_',$blog->title) . '/' .$blog->id)}}">تفاصيل<i class="icon-arrow-right3"></i></a></p>
                                  </div>
                                </div>
                            </div>
@@ -126,11 +126,8 @@
                                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                            <div class="col-md-12">
+                                                <p>{!! $settings['mission'] !!}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -145,11 +142,10 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
                                     <div class="panel-body">
-                                        <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                        <ul>
-                                            <li>Separated they live in Bookmarksgrove right</li>
-                                            <li>Separated they live in Bookmarksgrove right</li>
-                                        </ul>
+                                        <div class="col-md-12">
+                                            <p>{!! $settings['vision'] !!}</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +158,9 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" style="height: 0px;">
                                     <div class="panel-body">
-                                        <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                        <div class="col-md-12">
+                                            <p>{!! $settings['message'] !!}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -386,17 +384,17 @@
             <div class="row">
                 <div class="col-md-3 text-center animate-box">
                     <span class="icon"><i class="flaticon-skyline"></i></span>
-                    <span class="colorlib-counter js-counter" data-from="0" data-to="60000" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="colorlib-counter js-counter" data-from="0" data-to="{{$settings['citizens']}}" data-speed="5000" data-refresh-interval="50"></span>
                     <span class="colorlib-counter-label">عدد السكان</span>
                 </div>
                 <div class="col-md-3 text-center animate-box">
                     <span class="icon"><i class="flaticon-engineer"></i></span>
-                    <span class="colorlib-counter js-counter" data-from="0" data-to="150" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="colorlib-counter js-counter" data-from="0" data-to="{{$settings['employees']}}" data-speed="5000" data-refresh-interval="50"></span>
                     <span class="colorlib-counter-label">عدد الموظفين</span>
                 </div>
                 <div class="col-md-3 text-center animate-box">
                     <span class="icon"><i class="flaticon-architect-with-helmet"></i></span>
-                    <span class="colorlib-counter js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50"></span>
+                    <span class="colorlib-counter js-counter" data-from="0" data-to="{{$settings['projects']}}" data-speed="5000" data-refresh-interval="50"></span>
                     <span class="colorlib-counter-label">عدد المشاريع المنجزة </span>
                 </div>
                 <div class="col-md-3 text-center animate-box">
