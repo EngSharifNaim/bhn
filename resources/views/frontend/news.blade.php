@@ -49,36 +49,18 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($related_blogs as $blog)
                 <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
                     <div class="blog-entry">
-                        <a href="blog.html" class="blog-img"><img src="assets/images/blog-1.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
+                        <a href="blog.html" class="blog-img"><img src="{{url('assets/images/blog-2.jpg')}}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                         <div class="desc">
-                            <span><small>10/09/2020 </small>  <small>  </small>  <small> </i> </small></span>
-                            <h3><a href="blog.html">تواصل حملات التعقيم</a></h3>
-                            <p>قامت البلدية بتعقيم كل من الشارع العام وشارع القرمان في اطار مواجهتها لفايروس كورونا.</p>
+                            <span><small>{{$blog->created_at}} </small>  <small>  </small>  <small> </i> </small></span>
+                            <h3><a href="blog.html">{{$blog->title}}</a></h3>
+                            <p>{{substr($blog->details,0,100)}} ...</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-                    <div class="blog-entry">
-                        <a href="blog.html" class="blog-img"><img src="assets/images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-                        <div class="desc">
-                            <span><small>15/09/2020 </small></span>
-                            <h3><a href="blog.html">لجنة الطوارئ بالبلدية تواصل اجتماعتها</a></h3>
-                            <p>قامت لجنة الطوارئ في بلدية بيت حانون باجتماع لمتابعة سير عمل الجنة</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-                    <div class="blog-entry">
-                        <a href="blog.html" class="blog-img"><img src="assets/images/blog-3.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-                        <div class="desc">
-                            <span><small>01/09/2020 </small> </span>
-                            <h3><a href="blog.html">مساعدة طارئة لموظفي مستشفى بيت حانون</a></h3>
-                            <p>قامت البلدية وبالتعاون مع جمعية خيرة بتقديم مساعدة طائرة عبارة عن مواد تنظيف لموظفي مستشفى بيت حانون</p>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
             </div>
         </div>
     </div>

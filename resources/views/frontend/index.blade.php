@@ -56,7 +56,7 @@
                                     <a href="{{url('news')}}" class="blog-img"><img src="assets/images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                                     <div class="desc">
                                         <span><small>15/09/2020 </small></span>
-                                        <h3><a href="{{url('news/' . $blog->id)}}">{{$blog->title}}</a></h3>
+                                        <h3><a href="{{url('news/' . str_replace(' ','_',$blog->title) . '/' .  $blog->id)}}">{{$blog->title}}</a></h3>
                                     </div>
                                 </div>
                             </div>

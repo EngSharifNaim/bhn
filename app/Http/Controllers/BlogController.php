@@ -45,9 +45,10 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show($slug,Blog $blog)
     {
-        return view('frontend.news',compact('blog'));
+        $related_blogs = Blog::where('category_id',$blog->category_id)->orderBy('id','DESC')->take(6)->get();
+        return view('frontend.news',compact('blog','related_blogs'));
     }
 
     /**
