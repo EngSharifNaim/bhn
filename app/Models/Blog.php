@@ -8,9 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
-
+    protected $fillable =[
+        'title','body','user_id','category_id'
+    ];
     public function category()
     {
-        return $this->belongsTo(Category::class,'id','category_id');
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'blog_id','id')
+            ->orderBy('id','DESC');
+    }
+    public function last_comments()
+    {
+        return $this->hasMany(Comment::class,'blog_id','id')
+            ->orderBy('id','DESC')
+            ->take(2);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class,'blog_id','id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

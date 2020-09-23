@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 سبتمبر 2020 الساعة 13:07
+-- Generation Time: 23 سبتمبر 2020 الساعة 12:37
 -- إصدار الخادم: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -35,10 +35,10 @@ CREATE TABLE `blogs` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `main` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `slider` int(11) NOT NULL DEFAULT 0
+  `main` int(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` datetime NOT NULL,
+  `slider` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -46,9 +46,12 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `title`, `details`, `image`, `category_id`, `user_id`, `main`, `created_at`, `updated_at`, `slider`) VALUES
-(1, 'خبر تجريبي في أخبار البلدية', 'خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية', '', 1, 0, 1, NULL, NULL, 1),
-(2, 'البلدية تستقبل الكورورنا', 'البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا', '', 1, 0, 0, NULL, NULL, 0),
-(3, 'طواقم البلدية تقوم بحملة تعقيم ', 'طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم ', '', 1, 0, 1, NULL, NULL, 1);
+(1, 'خبر تجريبي في أخبار البلدية', 'خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية خبر تجريبي في أخبار البلدية', '', 1, 1, 1, '2020-09-23 09:29:32', '0000-00-00 00:00:00', 1),
+(2, 'البلدية تستقبل الكورورنا', 'البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا البلدية تستقبل الكورورنا', '', 1, 1, 0, '2020-09-23 09:29:32', '0000-00-00 00:00:00', 0),
+(3, 'طواقم البلدية تقوم بحملة تعقيم ', 'طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم طواقم البلدية تقوم بحملة تعقيم ', '', 1, 1, 1, '2020-09-23 09:29:32', '0000-00-00 00:00:00', 1),
+(4, 'السلام عليكم', '<p>asdaSDAsdasd</p>', 'images/blogs/1600856323.jpg', 2, 1, 0, '2020-09-23 07:18:43', '2020-09-23 10:18:43', 0),
+(5, 'asdfasd', '<p>sdfasdfasdf</p>', 'images/blogs/1600857275.jpg', 2, 1, 1, '2020-09-23 07:34:35', '2020-09-23 10:34:35', 1),
+(6, 'adfsdf', '<p>sadfasdfasdf</p>', 'images/blogs/1600857300.jpg', 2, 1, 0, '2020-09-23 07:35:00', '2020-09-23 10:35:00', 0);
 
 -- --------------------------------------------------------
 
@@ -86,10 +89,56 @@ CREATE TABLE `comments` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `blog_id` int(11) NOT NULL,
-  `valid` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `valid` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `comments`
+--
+
+INSERT INTO `comments` (`id`, `name`, `body`, `blog_id`, `valid`, `created_at`, `updated_at`) VALUES
+(1, 'sharif naim', 'Hello wolrd', 3, 1, '2020-09-22 21:00:00', NULL),
+(2, 'Mahmoud mrad', 'Hello wolrd test', 3, 1, '2020-09-22 21:00:00', NULL),
+(3, 'dsdfsa', 'sdfsdf', 3, 0, '2020-09-23 03:42:26', '2020-09-23 03:42:26'),
+(4, 'شريف نعيم', 'مرحبا بكم', 3, 0, '2020-09-23 03:43:03', '2020-09-23 03:43:03'),
+(5, 'محمود', 'السلام عليكم', 3, 0, '2020-09-23 03:57:08', '2020-09-23 03:57:08'),
+(6, 'محمود', 'السلام عليكم', 3, 0, '2020-09-23 03:57:19', '2020-09-23 03:57:19'),
+(7, 'محمود', 'السلام عليكم', 3, 0, '2020-09-23 03:57:22', '2020-09-23 03:57:22'),
+(8, 'dfdsf', 'sdfsdf', 3, 0, '2020-09-23 04:06:02', '2020-09-23 04:06:02'),
+(9, 'شريف نعيم', 'السلام عليكم و رحمة الله وبركاته', 3, 0, '2020-09-23 04:06:22', '2020-09-23 04:06:22'),
+(10, 'عبود مصلج', 'خدمات البلدية سيئة', 3, 0, '2020-09-23 04:07:02', '2020-09-23 04:07:02'),
+(11, 'عبود مصلج', 'خدمات البلدية سيئة', 3, 0, '2020-09-23 04:08:21', '2020-09-23 04:08:21'),
+(12, 'عبود مصلج', 'خدمات البلدية سيئة', 3, 0, '2020-09-23 04:08:30', '2020-09-23 04:08:30'),
+(13, 'sdfasdf', 'sdfsdfsdf', 3, 0, '2020-09-23 04:08:40', '2020-09-23 04:08:40'),
+(14, 'asdasd', 'asdasd', 3, 0, '2020-09-23 04:09:59', '2020-09-23 04:09:59'),
+(15, 'dfsadf', 'sadfasdf', 3, 0, '2020-09-23 04:20:30', '2020-09-23 04:20:30'),
+(16, 'xcvxc', 'xcvzxcv', 3, 0, '2020-09-23 04:29:02', '2020-09-23 04:29:02'),
+(17, 'xcvxc', 'xcvzxcv', 3, 0, '2020-09-23 04:29:08', '2020-09-23 04:29:08'),
+(18, 'xcvxcv', 'xcvxcv', 3, 0, '2020-09-23 04:31:31', '2020-09-23 04:31:31'),
+(19, 'xcvxc', 'xcvxcv', 3, 0, '2020-09-23 04:32:10', '2020-09-23 04:32:10'),
+(20, 'xcvxc', 'xcvxcv', 3, 0, '2020-09-23 04:32:13', '2020-09-23 04:32:13'),
+(21, 'xcvxc', 'xcvxcv', 3, 0, '2020-09-23 04:32:14', '2020-09-23 04:32:14'),
+(22, 'xcvxc', 'xcvxcv', 3, 0, '2020-09-23 04:32:16', '2020-09-23 04:32:16'),
+(23, 'سيب', 'سيب', 3, 0, '2020-09-23 04:34:43', '2020-09-23 04:34:43'),
+(24, 'dfsd', 'sdfsd', 3, 0, '2020-09-23 04:36:52', '2020-09-23 04:36:52'),
+(25, 'dfsd', 'sdfsd', 3, 0, '2020-09-23 04:36:53', '2020-09-23 04:36:53'),
+(26, 'ada', 'asdsd', 3, 0, '2020-09-23 04:37:07', '2020-09-23 04:37:07'),
+(27, 'ada', 'asdsd', 3, 0, '2020-09-23 04:37:09', '2020-09-23 04:37:09'),
+(28, 'asda', 'asdas', 3, 0, '2020-09-23 04:38:56', '2020-09-23 04:38:56'),
+(29, 'asdasd', 'asdasd', 3, 0, '2020-09-23 04:40:26', '2020-09-23 04:40:26'),
+(30, 'asdasd', 'asdasd', 3, 0, '2020-09-23 04:40:27', '2020-09-23 04:40:27'),
+(31, 'aDSD', 'ASDASD', 3, 0, '2020-09-23 04:40:48', '2020-09-23 04:40:48'),
+(32, 'aSA', 'ASDASD', 3, 0, '2020-09-23 04:41:49', '2020-09-23 04:41:49'),
+(33, 'aSA', 'ASDASD', 3, 0, '2020-09-23 04:41:52', '2020-09-23 04:41:52'),
+(34, 'aSA', 'ASDASD', 3, 0, '2020-09-23 04:41:54', '2020-09-23 04:41:54'),
+(35, 'aSA', 'ASDASD', 3, 0, '2020-09-23 04:41:58', '2020-09-23 04:41:58'),
+(36, 'شسيشس', 'شسيشسي', 3, 0, '2020-09-23 04:44:39', '2020-09-23 04:44:39'),
+(37, 'شسيشس', 'شسيشسي', 3, 0, '2020-09-23 04:44:43', '2020-09-23 04:44:43'),
+(38, 'شسيشس', 'شسيشسي', 3, 0, '2020-09-23 04:44:44', '2020-09-23 04:44:44'),
+(39, 'شسيشس', 'شسيشسي', 3, 0, '2020-09-23 04:44:55', '2020-09-23 04:44:55'),
+(40, 'شريف نعيم', 'السلام عليكم و رحمة الله وب ركاته', 3, 0, '2020-09-23 04:45:09', '2020-09-23 04:45:09');
 
 -- --------------------------------------------------------
 
@@ -154,9 +203,18 @@ CREATE TABLE `photos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `blog_id` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` datetime NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `photos`
+--
+
+INSERT INTO `photos` (`id`, `blog_id`, `image`, `created_at`, `updated_at`, `title`) VALUES
+(1, 3, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'المرحلة الأولى من انشاء المشروع'),
+(2, 3, '', '2020-09-23 07:56:08', '0000-00-00 00:00:00', 'مرحلة البدئ بصب القواعد');
 
 -- --------------------------------------------------------
 
@@ -200,6 +258,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'sharif naim', 'sharif@gmail.com', NULL, '$2y$10$X3cYdVKK9NBuOR1WCNKVjeVD9SQPdJi9ib9Lel7ppdtuliLcV1DMe', NULL, '2020-09-23 05:23:02', '2020-09-23 05:23:02');
 
 --
 -- Indexes for dumped tables
@@ -269,7 +334,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -281,7 +346,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -299,7 +364,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -311,7 +376,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

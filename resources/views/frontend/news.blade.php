@@ -38,6 +38,53 @@
             </div>
         </div>
     </div>
+    <div class="colorlib-contact" id="contact">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-12 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
+                    <span class="heading-meta">تعلقيات و آراء الجمهور</span>
+                    <h2 class="colorlib-heading">نسعد بالاستعمال الى اراءكم وانطباعكم عن هذا المحتوى</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" id="comments_area">
+                    @foreach($blog->last_comments as $comment)
+                    <div class="colorlib-feature colorlib-feature-sm animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
+                        <div class="colorlib-icon" style="padding: 0px">
+                            <i class="icon-message"></i>
+                        </div>
+                        <div class="colorlib-text">
+                            <p>{{$comment->name}}</p>
+                            <p>{{$comment->created_at->diffForHumans()}}</p>
+                            <p>{{$comment->body}}</p>
+                        </div>
+                    </div>
+                        @endforeach
+                </div>
+                <div class="col-md-6 col-md-push-1">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
+                            <form action="" id="comment_form" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" style="display: none" name="blog_id" value="{{$blog->id}}" class="form-control" placeholder="الإسم">
+                                    <input type="text" name="name" class="form-control" placeholder="الإسم">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="body" id="message" cols="30" rows="7" class="form-control" placeholder="التعليق"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-send-message send_comment" value="إرسال">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <div class="colorlib-work" id="projects">
         <div class="colorlib-narrow-content">
@@ -48,12 +95,13 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($blog->photos as $photo)
                 <div class="col-md-6 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
                     <div class="project" style="background-image: url({{url('assets/images/img-6.jpg')}});">
                         <div class="desc">
                             <div class="con">
-                                <h3><a href="work.html">Work 01</a></h3>
-                                <span>Building</span>
+                                <h3><a href="work.html">{{$photo->title}}</a></h3>
+                                <span>{{$photo->created_at->diffForHumans()}}</span>
                                 <p class="icon">
                                     <span><a href="#"><i class="icon-share3"></i></a></span>
                                     <span><a href="#"><i class="icon-eye"></i> 100</a></span>
@@ -63,51 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-                    <div class="project" style="background-image: url({{url('assets/images/img-6.jpg')}});">
-                        <div class="desc">
-                            <div class="con">
-                                <h3><a href="work.html">Work 06</a></h3>
-                                <span>Table, Chairs</span>
-                                <p class="icon">
-                                    <span><a href="#"><i class="icon-share3"></i></a></span>
-                                    <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                    <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-                    <div class="project" style="background-image: url({{url('assets/images/img-6.jpg')}});">
-                        <div class="desc">
-                            <div class="con">
-                                <h3><a href="work.html">Work 06</a></h3>
-                                <span>Table, Chairs</span>
-                                <p class="icon">
-                                    <span><a href="#"><i class="icon-share3"></i></a></span>
-                                    <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                    <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-                    <div class="project" style="background-image: url({{url('assets/images/img-6.jpg')}});">
-                        <div class="desc">
-                            <div class="con">
-                                <h3><a href="work.html">Work 06</a></h3>
-                                <span>Table, Chairs</span>
-                                <p class="icon">
-                                    <span><a href="#"><i class="icon-share3"></i></a></span>
-                                    <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                    <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
             </div>
         </div>
     </div>
@@ -202,4 +206,61 @@
             </div>
         </div>
     </div></div>
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('#comment_form').on('submit',function (event) {
+            event.preventDefault()
+            $.ajax({
+                url: '{{url('comment')}}',
+                data: new FormData(this),
+                cache: false,
+                method:'post',
+                contentType: false,
+                cache: false,
+                processData:false,
+
+                beforeSend:function () {
+                    $('.send_comment').attr('value','يتم الارسال الان ... ')
+                    $('.send_comment').attr( "disabled", "disabled" )
+
+                },
+                success:function (data) {
+                    // console.log(data)
+                    // alert(data.message + ' بمحتوى : ' + data.data.body)
+                    $('.send_comment').attr( "disabled", false )
+                    $('.send_comment').attr('value','ارسال')
+                    $('#comments_area').empty()
+                    for(i=0;i<data.data.length;i++)
+                    {
+
+                            $('#comments_area').append(' <div class="colorlib-feature colorlib-feature-sm animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">\n' +
+                                '                        <div class="colorlib-icon" style="padding: 0px">\n' +
+                                '                            <i class="icon-message"></i>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="colorlib-text">\n' +
+                                '                            <p>'+ data.data[i].name +
+                                '</p>\n' +
+                                '                            <p>' +data.data[i].created_at +
+                                '</p>\n' +
+                                '                            <p>' + data.data[i].body +
+                                '</p>\n' +
+                                '                        </div>\n' +
+                                '                    </div>')
+
+
+                    }
+
+                        $('#comments_area').children(":first").css('background-color','#f0f0f0')
+
+
+                }
+
+            })
+        })
+    })
+</script>
 @endsection
